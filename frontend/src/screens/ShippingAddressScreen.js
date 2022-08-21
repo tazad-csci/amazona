@@ -8,7 +8,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 
 export default function ShippingAddressScreen() {
   const navigate = useNavigate();
-  const { state, dispatch: cxtDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
 
   const {
     userInfo,
@@ -24,14 +24,14 @@ export default function ShippingAddressScreen() {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate('/signin');
+      navigate('/signin?redirect=/shipping');
     }
   }, [userInfo, navigate]);
 
   const [country, setCountry] = useState(shippingAddress.country || '');
 
   const submitHandler = (e) => {
-    cxtDispatch({
+    ctxDispatch({
       type: 'SAVE_SHIPPING_ADDRESS',
       payload: {
         fullName,
